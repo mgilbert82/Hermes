@@ -23,8 +23,8 @@ class Post
     #[ORM\Column(type: "text")]
     private ?string $image = NULL;
 
-    /*/#[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "posts")]
-    private $user; */
+    #[ORM\OneToMany(targetEntity: "App\Entity\User", mappedBy: "user")]
+    private $user;
 
     public function getId()
     {
