@@ -23,7 +23,7 @@ class Post
     #[ORM\Column(type: "text")]
     private ?string $image = NULL;
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\User", mappedBy: "user")]
+    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "posts")]
     private $user;
 
     public function getId()
@@ -57,19 +57,11 @@ class Post
         return $this;
     }
 
-    /**
-     * Get the value of content
-     */
     public function getContent()
     {
         return $this->content;
     }
 
-    /**
-     * Set the value of content
-     *
-     * @return  self
-     */
     public function setContent($content)
     {
         $this->content = $content;
@@ -77,19 +69,11 @@ class Post
         return $this;
     }
 
-    /**
-     * Get the value of image
-     */
     public function getImage()
     {
         return $this->image;
     }
 
-    /**
-     * Set the value of image
-     *
-     * @return  self
-     */
     public function setImage($image)
     {
         $this->image = $image;
