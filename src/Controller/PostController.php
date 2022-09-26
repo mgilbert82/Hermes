@@ -16,8 +16,8 @@ class PostController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Post::class);
-        $posts = $repository->findAll(); //SELECT ALL FROM 'post'
-        dump($posts);
+        $posts = $repository->findAll();
+        //SELECT ALL FROM 'post'
         return $this->render('post/index.html.twig', ["posts" => $posts]);
     }
 
@@ -28,6 +28,7 @@ class PostController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setUser($this->getUser());
             $em = $doctrine->getManager();
             $em->persist($post);
             $em->flush();

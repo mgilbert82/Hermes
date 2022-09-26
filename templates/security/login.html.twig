@@ -8,12 +8,6 @@
 			{{ error.messageKey }}
 		</div>
 	{% endif %}
-	{#
-		{{form_start(form)}}
-	
-		{{form_rest(form)}}
-		<button type="submit" class="btn btn-primary mt-3">Se connecter</button>
-	#}
 
 	<form method="post" class="container">
 		<label for="username" class="form-label">Email</label>
@@ -26,5 +20,6 @@
 
 		<button type="submit" class="btn btn-primary mt-3">Se connecter</button>
 	</form>
+	<a href="/user/new" class="btn btn-link">Vous n'avez pas de compte ?</a>
 
 {% endblock %}
