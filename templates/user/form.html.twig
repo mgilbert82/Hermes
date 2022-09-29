@@ -1,9 +1,20 @@
 {% extends "base.html.twig" %}
 {% block body %}
 	{{ form_start(form, {'attr': {'class': 'container'}}) }}
+	{{ form_row(form.email) }}
+	{{ form_label(form.password)}}
+	<div class="input-group mb-3">
+		{{ form_widget(form.password)}}
+		<span role="button" class="input-group-text" onclick="togglePassword()">
+			<i class="bi bi-eye" id="eye"></i>
+			<i class="bi bi-eye-slash d-none" id="eye-slash"></i>
+		</span>
+	</div>
+	{{ form_errors(form.password)}}
 	{{ form_rest(form)}}
 	<input class="btn btn-primary mt-5" type="submit" value="Créer mon compte">
-	<br>
-	<a href="/login" class="btn btn-link mt-2">J'ai déjà un compte, je me connecte</a>
+	<div>
+		<a href="/login" class="btn btn-link mt-2">J'ai déjà un compte, je me connecte</a>
+	</div>
 
 {% endblock %}
