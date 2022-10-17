@@ -33,7 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?String $confirmPwd = null;
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\User", mappedBy: "user")]
+    #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
     private $posts;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)

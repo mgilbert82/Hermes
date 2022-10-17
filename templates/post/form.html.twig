@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
 {% block body %}
-	{{ form_start(post_form, {"attr": {"novalidate":"novalidate"}})}}
-	{{ form_row(post_form.title )}}
-	{{ form_row(post_form.content )}}
-	{{ form_row(post_form.image )}}
+	{{ form_start(form, {"attr": {"novalidate":"novalidate"}})}}
+	{{ form_row(form.title )}}
+	{{ form_row(form.content )}}
+	{{ form_row(form.image )}}
 	<input class="btn btn-primary" type="submit" value="Publier">
-	{{ form_end(post_form )}}
+	{{ form_end(form )}}
 {% endblock %}

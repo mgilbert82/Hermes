@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+	{% for message in app.flashes('error') %}
+		<div class="alert alert-danger mt-3" role="alert">
+			{{ message }}
+		</div>
+	{% endfor %}
 	<div class="container-fluid d-flex flex-wrap justify-content-around">
 		{% for post in posts %}
 			<div class="card mt-5 flex-start" style="width: 18rem;">
 				{% if post.image %}
-					<img src="{{post.image }}" class="card-img-top" alt="{{ post.title }}">
+					<img src={{ asset('uploads/'~post.image) }} class="card-img-top" alt="{{ post.title }}">
 				{% endif %}
 				<div class="card-body">
 					{% if post.title %}
@@ -13,7 +18,7 @@
 						<p class="card-text">{{ post.content| slice(0, 60) }}...</p>
 
 					{% endif %}
-					{% if app.user %}
+					{% if app.user and app.user is same as post.user %}
 						<a href="{{ path('delete-post', {'id':post.id}) }}" class="btn btn-danger">
 							<i class="bi bi-trash-fill"></i>
 						</a>
@@ -25,9 +30,13 @@
 						</a>
 					{% endif %}
 				</div>
-				<p class="card-footer mt-5">Auteur:
-					{{ post.user.email }}.</p>
-			</div>
-		{% endfor %}
-	</div>
-{% endblock %}
+				<p class="card-footer mt-5 text-center">
+					{{ post.user.email }}<br>
+					{{post.publishedAt | date("d/m/Y")}}
+					-
+					{{post.publishedAt | date("H:i")}}
+				</p>
+			</p>
+		</div>
+	{% endfor %}
+</div>{% endblock %}
